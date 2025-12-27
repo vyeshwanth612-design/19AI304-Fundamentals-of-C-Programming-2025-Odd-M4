@@ -41,7 +41,70 @@
 ### Step 14: 
   Stop
 # Program:
+```c
+#include <stdio.h>
+
+ 
+void validateDate();
+
+int main() {
+    validateDate();       
+return 0;
+}
+
+void validateDate() {
+    int day, month, year;
+    int isValid = 1;
+
+    
+    scanf("%d", &day);
+
+    scanf("%d", &month);
+
+    scanf("%d", &year);
+
+    
+    if (year < 1) {
+        isValid = 0;
+    }
+
+        if (month < 1 || month > 12) {
+        isValid = 0;
+    }
+
+        if (isValid) {
+        if (month == 2) {
+            // Leap year check
+            if ((year % 400 == 0) || (year % 4 == 0 && year % 100 != 0)) {
+                if (day < 1 || day > 29)
+                    isValid = 0;
+            } else {
+                if (day < 1 || day > 28)
+                    isValid = 0;
+            }
+        }
+        else if (month == 4 || month == 6 || month == 9 || month == 11) {
+            if (day < 1 || day > 30)
+                isValid = 0;
+        }
+        else {
+            if (day < 1 || day > 31)
+                isValid = 0;
+        }
+    }
+
+    
+    if (isValid)
+        printf("The entered date is VALID.\n");
+    else
+        printf("The entered date is INVALID.\n");
+}
+
+```
 # Output:
+<img width="1432" height="721" alt="new2 0" src="https://github.com/user-attachments/assets/ca4ee314-db26-46f9-8339-eea499f9704c" />
+
+
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
 
@@ -89,7 +152,44 @@ Thus, the program was implemented and executed successfully, and the required ou
 ### Step 13: 
   Stop
 # Program:
+```c
+#include <stdio.h>
+
+
+int max(int a, int b);
+int min(int a, int b);
+
+int main() {
+    int num1, num2;
+
+    scanf("%d %d", &num1, &num2);
+
+    
+    printf("Maximum value: %d\n", max(num1, num2));
+    printf("Minimum value: %d\n", min(num1, num2));
+
+    return 0;
+}
+
+
+int max(int a, int b) {
+    if (a > b)
+        return a;
+    else
+        return b;
+}
+
+int min(int a, int b) {
+    if (a < b)
+        return a;
+    else
+        return b;
+}
+```
 # Output:
+<img width="1402" height="730" alt="new2 1" src="https://github.com/user-attachments/assets/c3d02c13-1d41-42c8-93de-2ca3e2d8f7ed" />
+
+
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
 
@@ -137,7 +237,38 @@ Thus, the program was implemented and executed successfully, and the required ou
 ### Step 11: 
  Stop
 # Program:
+```c
+#include <stdio.h>
+
+float celsiusToFahrenheit(float celsius);
+float fahrenheitToCelsius(float fahrenheit);
+
+int main() {
+    float celsius, fahrenheit;
+    scanf("%f", &celsius);
+    fahrenheit = celsiusToFahrenheit(celsius);
+    printf("Celsius to Fahrenheit: %.2f°F\n", fahrenheit);
+    scanf("%f", &fahrenheit);
+
+    
+    celsius = fahrenheitToCelsius(fahrenheit);
+    printf("Fahrenheit to Celsius: %.2f°C\n", celsius);
+
+    return 0;
+}
+
+
+float celsiusToFahrenheit(float celsius) {
+    return (celsius * 9 / 5) + 32;
+}
+
+float fahrenheitToCelsius(float fahrenheit) {
+    return (fahrenheit - 32) * 5 / 9;
+}
+```
 # Output:
+<img width="1486" height="726" alt="new2 2" src="https://github.com/user-attachments/assets/d4bc028b-44d5-476a-bcde-c074b03b77d4" />
+
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
 
@@ -185,7 +316,67 @@ Thus, the program was implemented and executed successfully, and the required ou
 ### Step 7: 
   Stop
 # Program:
+```c
+#include <stdio.h>
+
+
+void spiralPrint(int matrix[4][4], int rows, int cols);
+
+int main() {
+    int matrix[4][4];
+    int i, j;
+
+        printf("Enter elements of 4x4 matrix:\n");
+    for (i = 0; i < 4; i++) {
+        for (j = 0; j < 4; j++) {
+            scanf("%d", &matrix[i][j]);
+        }
+    }
+
+       spiralPrint(matrix, 4, 4);
+
+    return 0;
+}
+
+void spiralPrint(int matrix[4][4], int rows, int cols) {
+    int top = 0, bottom = rows - 1;
+    int left = 0, right = cols - 1;
+    int i;
+
+    printf("\nSpiral Order:\n");
+
+    while (top <= bottom && left <= right) {
+
+        
+        for (i = left; i <= right; i++)
+            printf("%d ", matrix[top][i]);
+        top++;
+
+        
+        for (i = top; i <= bottom; i++)
+            printf("%d ", matrix[i][right]);
+        right--;
+
+                if (top <= bottom) {
+            for (i = right; i >= left; i--)
+                printf("%d ", matrix[bottom][i]);
+            bottom--;
+        }
+
+                if (left <= right) {
+            for (i = bottom; i >= top; i--)
+                printf("%d ", matrix[i][left]);
+            left++;
+        }
+    }
+
+    printf("\n");
+}
+
+```
 # Output:
+<img width="1420" height="728" alt="new2 3" src="https://github.com/user-attachments/assets/4f4b18dc-2be4-44df-8b16-6f5f578efae4" />
+
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
 
@@ -220,7 +411,60 @@ To build a C program to convert a string as described above, using a user-define
 ### Step 6: 
  Stop
 # Program:
+```c
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+
+void convertCase(char str[]);
+
+int main() {
+    char str[200];
+
+    
+    printf("Enter a string: ");
+    fgets(str, sizeof(str), stdin);
+
+   
+    str[strcspn(str, "\n")] = '\0';
+
+
+    convertCase(str);
+
+   
+    printf("Modified string: %s\n", str);
+
+    return 0;
+}
+
+
+void convertCase(char str[]) {
+    int i, len;
+
+    len = strlen(str);
+
+    if (len == 0)
+        return;
+
+   
+    str[0] = toupper(str[0]);
+    str[len - 1] = toupper(str[len - 1]);
+
+  
+    for (i = 1; i < len - 1; i++) {
+        if (str[i] == ' ') {
+            str[i - 1] = toupper(str[i - 1]);
+            str[i + 1] = toupper(str[i + 1]);
+        }
+    }
+}
+
+```
 # Output:
+<img width="1410" height="726" alt="new2 4" src="https://github.com/user-attachments/assets/fe096c30-2212-4e22-9885-fa05468b9754" />
+
+
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
 
